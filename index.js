@@ -66,11 +66,20 @@ client.connect(err => {
 
     // left side news list
   app.get('/latestNews', (req, res) => {
-    collection.find({}).sort({"_id": -1}).limit(5)
+    collection.find({}).sort({"_id": -1}).limit(6)
       .toArray((err, documents) => {
         res.send(documents);
       })
   });
+
+    // left side all news list
+    app.get('/latestNewsAll', (req, res) => {
+        collection.find({}).limit(2)
+          .toArray((err, documents) => {
+            res.send(documents);
+          })
+      });
+
 
   // single news sorted by id
   app.get('/newsId/:id', (req, res) => {
